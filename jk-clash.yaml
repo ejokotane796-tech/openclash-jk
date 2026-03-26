@@ -121,10 +121,14 @@ default: &default
     - 直连
     - 所有-手动
     - 所有-自动
+    - 住宅-故转
     - 香港-故转
+    - 香港-自动
     - 台湾-故转
     - 日本-故转
+    - 日本-自动
     - 新加坡-故转
+    - 新加坡-自动
     - 韩国-故转
     - 美国-故转
     - 英国-故转
@@ -135,19 +139,7 @@ default: &default
 # 策略组配置
 # ========================
 proxy-groups:
-  # 主要策略组
-  - name: 国外
-    <<: *default
-  
-  - name: 国内
-    type: select
-    proxies:
-      - 直连
-      - 国外
-  
-  - name: 其他
-    <<: *default
-  
+
   # AI 服务策略组
   - name: ChatGPT
     <<: *default
@@ -232,6 +224,19 @@ proxy-groups:
     proxies:
       - 拒绝
       - 直连
+
+  # 主要策略组
+  - name: 国外
+    <<: *default
+  
+  - name: 国内
+    type: select
+    proxies:
+      - 直连
+      - 国外
+  
+  - name: 其他
+    <<: *default
 
   # 节点选择策略组
   - name: 所有-手动
@@ -375,6 +380,9 @@ proxy-groups:
     filter: "^(?!.*(港|hk|hongkong|hong kong|台|tw|taiwan|日本|jp|japan|新加坡|sg|singapore|韩|kr|korea|美|us|unitedstates|united states|英|uk|britain|unitedkingdom|united kingdom)).*$"
     url: "https://www.gstatic.com/generate_204"
     interval: 300
+
+
+  
 
 # ========================
 # 路由规则配置
