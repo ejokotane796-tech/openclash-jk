@@ -128,7 +128,7 @@ default: &default
     - 日本-故转
     - 日本-自动
     - 新加坡-故转
-    - 新加坡-自动
+    - 新加坡AI-自动
     - 韩国-故转
     - 美国-故转
     - 英国-故转
@@ -330,13 +330,13 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
   
-  - name: 新加坡-自动
+  - name: 新加坡AI-自动
     type: url-test
     use:
       - 魔戒机场
       - 牛逼机场
       - POL机场
-    filter: "(?i)新加坡|sg|singapore"
+    filter: "(?i)^(?=.*新加坡)(?=.*Gemini)"
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
