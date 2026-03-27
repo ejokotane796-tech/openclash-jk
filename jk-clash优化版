@@ -1,0 +1,579 @@
+# ========================
+# OpenClash 优化配置文件
+# ========================
+# 项目地址: https://github.com/jackcsq/openclash-config
+# 更新时间: 2025-06-20
+# 适用版本: OpenClash v0.45.x+
+
+# ========================
+# 机场节点订阅配置
+# ========================
+proxy-providers:
+  魔戒机场:
+    url: https://msub.xn--m7r52rosihxm.com/api/v1/client/subscribe?token=6399bc02bc089c9df2863821fe28fc59
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: "https://www.gstatic.com/generate_204"
+      interval: 300
+    proxy: 直连
+
+  牛逼机场:
+    url: https://zhuzhuzhu.whtjdasha.com/api/v1/client/subscribe?token=81d0e41d845febccf6f4eaa212bf7bcf
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: "https://www.gstatic.com/generate_204"
+      interval: 300
+    proxy: 直连
+
+
+  POL机场:
+    url: https://ang-88feishuhuosanwxna.polyhongmeng.com/s/27e5eaf9c7b4253880aa9880cda2d514
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: "https://www.gstatic.com/generate_204"
+      interval: 300
+    proxy: 直连
+
+
+# ========================
+# 内置代理节点
+# ========================
+proxies:
+  - {name: 直连, type: direct}
+  - {name: 拒绝, type: reject}
+
+# ========================
+# 网络端口配置
+# ========================
+port: 7890              # HTTP 代理端口
+socks-port: 7891        # SOCKS5 代理端口
+redir-port: 7892        # 重定向端口
+mixed-port: 7893        # 混合代理端口
+tproxy-port: 7895       # TProxy 端口
+
+allow-lan: true         # 允许局域网连接
+mode: rule              # 运行模式: rule/global/direct
+log-level: info         # 日志级别: silent/error/warning/info/debug
+
+# ========================
+# Web UI 管理界面
+# ========================
+external-controller: 0.0.0.0:9090
+external-ui: ui
+external-ui-name: zashboard
+external-ui-url: "https://github.moeyy.xyz/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+secret: "123456"        # ⚠️ 请修改为安全密码
+
+# ========================
+# DNS 配置
+# ========================
+dns:
+  enable: true
+  listen: 0.0.0.0:7874
+  ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.20.0.1/16
+  nameserver:
+    - 223.5.5.5
+    - 1.1.1.1
+    - 8.8.8.8
+
+  fallback: 
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+
+  fake-ip-filter:
+    - +.lan
+    - +.local
+    - geosite:cn
+    # 自定义过滤域名
+    - +.mitce.net
+    - +.ddns-link-b5.uk
+    - +.dexlos.com
+
+ipv6: true              # 启用 IPv6 支持
+
+# ========================
+# TUN 模式配置
+# ========================
+tun:
+  enable: true
+  stack: gvisor           # 网络栈: system/gvisor/lwip
+  device: utun
+  endpoint-independent-nat: true
+  auto-route: false
+  auto-detect-interface: false
+  auto-redirect: false
+  strict-route: false
+
+# ========================
+# 配置文件设置
+# ========================
+profile:
+  store-selected: true    # 存储策略组选择
+  store-fake-ip: true     # 存储 fake-ip
+
+# ========================
+# 嗅探（新增）
+# ========================
+sniffer:
+  enable: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080]
+
+# ========================
+# 策略组模板定义
+# ========================
+default: &default
+  type: select
+  proxies:
+    - 直连
+    - 所有-手动
+    - 所有-自动
+    - 住宅-故转
+    - 香港-故转
+    - 香港-自动
+    - 台湾-故转
+    - 日本-故转
+    - 日本-自动
+    - 新加坡-故转
+    - 新加坡AI-自动
+    - 韩国-故转
+    - 美国-故转
+    - 英国-故转
+    - 其他-故转
+    - 拒绝
+
+# ========================
+# 策略组配置
+# ========================
+proxy-groups:
+
+  # AI 服务策略组
+  - name: ChatGPT
+    <<: *default
+  
+  - name: Claude
+    <<: *default
+  
+  - name: Meta AI
+    <<: *default
+  
+  - name: Perplexity
+    <<: *default
+  
+  - name: Gemini
+    <<: *default
+
+  # 社交媒体策略组
+  - name: Telegram
+    <<: *default
+  
+  - name: Twitter(X)
+    <<: *default
+  
+  - name: WhatsApp
+    <<: *default
+  
+  - name: Facebook
+    <<: *default
+  
+  # 流媒体策略组
+  - name: YouTube
+    <<: *default
+  
+  - name: Netflix
+    <<: *default
+  
+  - name: TikTok
+    <<: *default
+  
+  - name: Disney
+    <<: *default
+  
+  - name: HBO
+    <<: *default
+  
+  - name: Spotify
+    <<: *default
+  
+  # 游戏策略组
+  - name: Steam
+    <<: *default
+  
+  - name: Game
+    <<: *default
+  
+  # 科技公司策略组
+  - name: Google
+    <<: *default
+  
+  - name: Apple
+    <<: *default
+  
+  - name: Microsoft
+    <<: *default
+  
+  - name: Amazon
+    <<: *default
+  
+  - name: GitHub
+    <<: *default
+  
+  # 加密货币策略组
+  - name: Crypto
+    <<: *default
+  
+  # 功能性策略组
+  - name: Test
+    <<: *default
+  
+  - name: Block
+    type: select
+    proxies:
+      - 拒绝
+      - 直连
+
+  # 主要策略组
+  - name: 国外
+    <<: *default
+  
+  - name: 国内
+    type: select
+    proxies:
+      - 直连
+      - 国外
+  
+  - name: 其他
+    <<: *default
+
+  # 节点选择策略组
+  - name: 所有-手动
+    type: select
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+  
+  - name: 所有-自动
+    type: url-test
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  
+  # 地区分组策略组
+  - name: 住宅-故转
+    type: fallback
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "(?i)住宅"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+
+  - name: 香港-故转
+    type: fallback
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "(?i)港|hk|hongkong|hong kong"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+  
+  - name: 香港-自动
+    type: url-test
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "(?i)港|hk|hongkong|hong kong"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+
+  - name: 台湾-故转
+    type: fallback
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "(?i)台|tw|taiwan"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+
+  
+  - name: 日本-故转
+    type: fallback
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "(?i)日本|jp|japan"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+  
+  - name: 日本-自动
+    type: url-test
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "(?i)日本|jp|japan"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+
+  - name: 新加坡-故转
+    type: fallback
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "(?i)新加坡|sg|singapore"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+  
+  - name: 新加坡AI-自动
+    type: url-test
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "(?i)^(?=.*新加坡)(?=.*Gemini)"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+
+  - name: 韩国-故转
+    type: fallback
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "(?i)韩|kr|korea"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+  
+  - name: 美国-故转
+    type: fallback
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "(?i)美|us|unitedstates|united states"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+  
+  - name: 英国-故转
+    type: fallback
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "(?i)英|uk|britain|unitedkingdom|united kingdom"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+  
+  - name: 其他-故转
+    type: fallback
+    use:
+      - 魔戒机场
+      - 牛逼机场
+      - POL机场
+    filter: "^(?!.*(港|hk|hongkong|hong kong|台|tw|taiwan|日本|jp|japan|新加坡|sg|singapore|韩|kr|korea|美|us|unitedstates|united states|英|uk|britain|unitedkingdom|united kingdom)).*$"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+
+
+  
+
+# ========================
+# 路由规则配置
+# ========================
+rules:
+# ===== 广告拦截 =====
+  - DOMAIN-KEYWORD,ad,Block
+  - DOMAIN-KEYWORD,track,Block
+  - DOMAIN-KEYWORD,analytics,Block
+  - DOMAIN-SUFFIX,doubleclick.net,Block
+  - DOMAIN-SUFFIX,googlesyndication.com,Block
+
+# ===== 防漏 =====
+  - DOMAIN-SUFFIX,gvt2.com,YouTube
+  - DOMAIN-SUFFIX,googlevideo.com,YouTube
+  - DOMAIN-SUFFIX,ytimg.com,YouTube
+  - DOMAIN-SUFFIX,datadoghq.com,国外
+
+# ===== 测试 =====
+  - RULE-SET,TEST,Test
+  - RULE-SET,Block,Block
+  
+ # ===== AI =====
+  - RULE-SET,ChatGPT,ChatGPT
+  - RULE-SET,Claude,Claude
+  - RULE-SET,MetaAI,Meta AI
+  - RULE-SET,Perplexity,Perplexity
+  - RULE-SET,Gemini,Gemini
+  
+  # 开发工具路由
+  - RULE-SET,GitHub,GitHub
+  
+  # ===== 社交 =====
+  - RULE-SET,Telegram,Telegram
+  - RULE-SET,TelegramIP,Telegram,no-resolve
+  - RULE-SET,Twitter,Twitter(X)
+  - RULE-SET,WhatsApp,WhatsApp
+  - RULE-SET,Facebook,Facebook
+  
+  # 科技公司路由
+  - RULE-SET,Amazon,Amazon
+  - RULE-SET,Apple,Apple
+  - RULE-SET,Apple-CN,Apple
+  - RULE-SET,Microsoft,Microsoft
+  
+  # 加密货币路由
+  - RULE-SET,OKX,Crypto
+  - RULE-SET,Bybit,Crypto
+  - RULE-SET,Binance,Crypto
+  
+  # 流媒体路由
+  - RULE-SET,Youtube,YouTube
+  - RULE-SET,TikTok,TikTok
+  - RULE-SET,Netflix,Netflix
+  - RULE-SET,NetflixIP,Netflix,no-resolve
+  - RULE-SET,Disney,Disney
+  - RULE-SET,HBO,HBO
+  - RULE-SET,Spotify,Spotify
+  
+  # 游戏平台路由
+  - RULE-SET,Steam,Steam
+  - RULE-SET,Epic,Game
+  - RULE-SET,EA,Game
+  - RULE-SET,Blizzard,Game
+  - RULE-SET,UBI,Game
+  - RULE-SET,PlayStation,Game
+  - RULE-SET,Nintend,Game
+  
+  # Google 服务路由
+  - RULE-SET,Google,Google
+  - RULE-SET,GoogleIP,Google,no-resolve
+  
+  # 国外网站路由
+  - RULE-SET,Proxy,国外
+  - RULE-SET,Globe,国外
+  
+  # 国内网站路由
+  - RULE-SET,Direct,国内
+  - RULE-SET,China,国内
+  - RULE-SET,ChinaIP,国内,no-resolve
+  - RULE-SET,Private,国内
+
+  # ===== 防泄漏 =====
+  - DOMAIN-SUFFIX,cloudflare.com,国外
+  - DOMAIN-SUFFIX,akamaihd.net,国外
+  - DOMAIN-SUFFIX,fastly.net,国外
+  - GEOIP,CN,国内
+  - MATCH,其他
+
+# ========================
+# 规则集配置
+# ========================
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+
+
+rule-providers:
+
+  # ========================
+  # 测试 & 广告拦截
+  # ========================
+  TEST: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Check.list"}
+  Block: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Block.list"}
+  
+  # ========================
+  # AI 服务规则集
+  # ========================
+  ChatGPT: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/meta/geo/geosite/openai.mrs"}
+  Claude: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.list"}
+  MetaAI: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/liandu2024/clash/main/list/MetaAi.list"}
+  Perplexity: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/meta/geo/geosite/perplexity.mrs"}
+  Gemini: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/liandu2024/clash/main/list/Gemini.list"}
+  
+  # 开发工具规则集
+  GitHub: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/github.mrs"}
+  
+  # 社交媒体规则集
+  Telegram: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/telegram.mrs"}
+  TelegramIP: {<<: *ip, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/telegram.mrs"}
+  Twitter: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/x.mrs"}
+  WhatsApp: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Whatsapp/Whatsapp.list"}
+  Facebook: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/facebook.mrs"}
+  Reddit: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/reddit.mrs"}
+  
+  # 科技公司规则集
+  Amazon: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/amazon.mrs"}
+  Apple-CN: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/apple-cn.mrs"}
+  Apple: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/apple.mrs"}
+  Microsoft: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/microsoft.mrs"}
+  Google: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.mrs"}
+  GoogleIP: {<<: *ip, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs"}
+  Nvidia: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Nvidia/Nvidia.list"}
+  
+  # 加密货币规则集
+  OKX: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/okx.mrs"}
+  Bybit: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/bybit.mrs"}
+  Binance: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/binance.mrs"}
+  
+  # 流媒体规则集
+  Youtube: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/youtube.mrs"}
+  TikTok: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/tiktok.mrs"}
+  Netflix: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/netflix.mrs"}
+  NetflixIP: {<<: *ip, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/netflix.mrs"}
+  Disney: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/disney.mrs"}
+  HBO: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/hbo.mrs"}
+  Spotify: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/spotify.mrs"}
+  Crunchyroll: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Crunchyroll.list"}
+  
+  # 游戏平台规则集
+  Steam: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam.mrs"}
+  Epic: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list"}
+  EA: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EA/EA.list"}
+  Blizzard: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Blizzard/Blizzard.list"}
+  UBI: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/UBI/UBI.list"}
+  PlayStation: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PlayStation/PlayStation.list"}
+  Nintend: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.list"}
+  
+  # 国外网站规则集
+  Proxy: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Proxy.list"}
+  Globe: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list"}
+
+
+  # 国内网站规则集
+  Direct: {<<: *class, url: "https://github.moeyy.xyz/https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Direct.list"}
+  China: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/cn.mrs"}
+  ChinaIP: {<<: *ip, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/cn.mrs"}
+  Private: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/private.mrs"}
+  
+  # 注释的规则集（可选启用）
+  # GateFireWall / Domain: {<<: *domain, url: "https://github.moeyy.xyz/https://github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/gfw.mrs"}
