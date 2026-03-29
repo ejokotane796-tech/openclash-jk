@@ -9,8 +9,8 @@
 # 机场节点订阅配置
 # ========================
 proxy-providers:
-  魔戒机场:
-    url: https://msub.xn--m7r52rosihxm.com/api/v1/client/subscribe?token=6399bc02bc089c9df2863821fe28fc59
+  ××机场:
+    url: 
     type: http
     interval: 86400
     health-check:
@@ -19,8 +19,8 @@ proxy-providers:
       interval: 300
     proxy: 直连
 
-  牛逼机场:
-    url: https://zhuzhuzhu.whtjdasha.com/api/v1/client/subscribe?token=81d0e41d845febccf6f4eaa212bf7bcf
+  ××机场:
+    url: 
     type: http
     interval: 86400
     health-check:
@@ -29,16 +29,6 @@ proxy-providers:
       interval: 300
     proxy: 直连
 
-
-  POL机场:
-    url: https://ang-88feishuhuosanwxna.polyhongmeng.com/s/27e5eaf9c7b4253880aa9880cda2d514
-    type: http
-    interval: 86400
-    health-check:
-      enable: true
-      url: "https://www.gstatic.com/generate_204"
-      interval: 300
-    proxy: 直连
 
 
 # ========================
