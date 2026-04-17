@@ -9,83 +9,83 @@ proxy-groups:
 
   - name: Claude
     type: select
-    proxies: [新加坡AI]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: Gemini
     type: select
-    proxies: [新加坡AI]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: AI
     type: select
-    proxies: [新加坡AI]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: YouTube
     type: select
-    proxies: [Proxy, 香港节点, 台湾节点, 日本节点, 新加坡节点, 韩国节点, 美国节点]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: Netflix
     type: select
-    proxies: [Proxy, 香港节点, 台湾节点, 日本节点, 新加坡节点, 韩国节点, 美国节点]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: Disney+
     type: select
-    proxies: [Proxy, 香港节点, 台湾节点, 日本节点, 新加坡节点, 韩国节点, 美国节点]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: TikTok
     type: select
-    proxies: [日本节点, POL日本, 日本fallback]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: Instagram
     type: select
-    proxies: [日本节点, POL日本, 日本fallback]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: Twitter
     type: select
-    proxies: [日本节点, POL日本, 日本fallback]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: Spotify
     type: select
-    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 新加坡节点, 韩国节点, 美国节点]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: Telegram
     type: select
-    proxies: [Proxy, 香港节点, 台湾节点, 日本节点, 新加坡节点, 韩国节点, 美国节点]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: Facebook
     type: select
-    proxies: [住宅IP]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: PayPal
     type: select
-    proxies: [住宅IP]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: Amazon
     type: select
-    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 新加坡节点, 韩国节点, 美国节点, 住宅IP]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: Max
     type: select
-    proxies: [Proxy, 香港节点, 台湾节点, 日本节点, 新加坡节点, 韩国节点, 美国节点]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: 苹果服务
     type: select
-    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 新加坡节点, 韩国节点, 美国节点]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: 谷歌服务
     type: select
-    proxies: [Proxy, 香港节点, 台湾节点, 日本节点, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, POL日本]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: 微软服务
     type: select
-    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 新加坡节点, 韩国节点, 美国节点]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: 哔哩哔哩
     type: select
-    proxies: [DIRECT, Proxy, 香港节点, 台湾节点]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
   - name: 游戏平台
     type: select
-    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 新加坡节点, 韩国节点, 美国节点]
+    proxies: [DIRECT, Proxy, 香港节点, 台湾节点, 日本节点, 日本fallback, 新加坡节点, 韩国节点, 美国节点, 新加坡AI, 住宅IP, 手动选择]
 
 
   # ================= 2. 节点筛选分组（使用正则匹配自动拉取节点） =================
@@ -113,20 +113,12 @@ proxy-groups:
     include-all: true
     filter: "(?i)🇯🇵|JP|Japan|japan|Tokyo|tokyo|日本|东京|大阪|京日|苏日|沪日|上日|川日|深日|广日"
 
-  - name: POL日本
-    type: url-test
-    url: "http://www.gstatic.com/generate_204"
-    interval: 600
-    tolerance: 50
-    include-all: true
-    filter: "(?i)日本"
-
   - name: 日本fallback
     type: fallback
     url: "http://www.gstatic.com/generate_204"
     interval: 600
     include-all: true
-    filter: "(?i)日本-优化|日本-优化2|日本-优化3|日本JP-A|日本JP-HY2"
+    filter: "(?i)日本-住宅|日本-优化|日本-优化2|日本-优化3|日本JP-A|日本JP-HY2|🇯🇵|JP|Japan|japan|Tokyo|tokyo|日本"
 
   - name: 新加坡节点
     type: url-test
@@ -157,7 +149,7 @@ proxy-groups:
     interval: 600
     tolerance: 50
     include-all: true
-    filter: "(?i)🇺🇸|US|USA|America|america|United States|美国|凤凰城|洛杉矶|西雅图|芝加哥|纽约|沪美|美"
+    filter: "(?i)🇺🇸|US|USA|America|america|United States|美国|凤凰城|洛杉矶|西雅图|芝加哥|纽约|沪美"
 
   - name: 住宅IP
     type: fallback
@@ -166,6 +158,12 @@ proxy-groups:
     include-all: true
     filter: "住宅"
 
+
+  - name: 手动选择
+    type: select
+    include-all: true
+
+    
 # ================= 3. 规则集配置 (Rule Providers) =================
 # 自动将原有的 Shadowrocket/QuantumultX .list 后缀替换为 Clash 的 .yaml 格式
 rule-providers:
